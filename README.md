@@ -1,64 +1,30 @@
-﻿<a name="br2"></a> 
+﻿# CSC01B1 ST2 - 7 October 2022
 
-CSC01B1 ST2 - 7 October 2022
+## Stochasticity
 
-Stochasticity
+- The University of Johannesburg needs you to create a data structure called UJImage containing a dynamic two-dimensional array of structures representing pixels (picture elements). A single pixel for a colour image is defined as follows:
 
-The University of Johannesburg needs you to create a data structure called
+## Field       Details
 
-UJImagecontaining a dynamic two-dimensional array of structures representing
+red            An integer in the range [0, 255] representing the red colour   
 
-pixels (picture elements). A single pixel for a colour image is defined as follows:
+               component of the pixel.
 
-Field
+green          An integer in the range [0, 255] representing the green colour
 
-red
+               component of the pixel.
 
-Details
+blue           An integer in the range [0, 255] representing the blue colour 
 
-An integer in the range [0, 255]
+               component of the pixel.
 
-representing the red colour component of
+seeds          A fixed-length integer array of length 5, where each integer in the 
+ 
+               array represents a random number generator seed value.
 
-the pixel.
+- When the image is created, every pixel’s colour components (RGB) must be set to 0, and the seed values for each pixel must be read from a text file. When the image is drawn, the pixels must be updated as follows:
 
-green
-
-blue
-
-An integer in the range [0, 255]
-
-representing the green colour component
-
-of the pixel.
-
-An integer in the range [0, 255]
-
-representing the blue colour component of
-
-the pixel.
-
-seeds
-
-A fixed-length integer array of length 5,
-
-where each integer in the array represents
-
-a random number generator seed value.
-
-•
-
-•
-
-When the image is created, every pixel’s colour components (RGB) must be
-
-set to 0, and the seed values for each pixel must be read from a text file.
-
-When the image is drawn, the pixels must be updated as follows:
-
-o The value of each pixel’s colour component (red, green and blue)
-
-must be set to ꢀ − ꢁ, where ꢀ is the pixel’s row coordinate and ꢁ the
+- The value of each pixel’s colour component (red, green and blue)must be set to ꢀ − ꢁ, where ꢀ is the pixel’s row coordinate and ꢁ the
 
 column coordinate.
 
