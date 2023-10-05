@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1696537735 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\continuousrenderer.cpp
+	"ContinuousRenderer.h"
+
+1696537696 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\continuousrenderer.h
+	"UJImage.h"
+
+1696537563 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\ujimage.h
+	<iostream>
+	<string>
+	<sstream>
+	<ctime>
+	<cstdlib>
+	<cassert>
+	<fstream>
+	"Renderer.h"
+	"StochasticRenderer.h"
+	"ContinuousRenderer.h"
+
+1696537630 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\renderer.h
+
+1696537776 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\stochasticrenderer.h
+	"UJImage.h"
+
+1696537814 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\main.cpp
+	"UJImage.h"
+	<fstream>
+
+1696537654 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\renderer.cpp
+	"Renderer.h"
+
+1696537802 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\stochasticrenderer.cpp
+	"StochasticRenderer.h"
+
+1696537589 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\ujimage.cpp
+	"UJImage.h"
+
