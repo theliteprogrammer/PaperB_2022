@@ -4,11 +4,9 @@
 
 - The University of Johannesburg needs you to create a data structure called UJImage containing a dynamic two-dimensional array of structures representing pixels (picture elements). A single pixel for a colour image is defined as follows:
 
-## Field       Details
-
-red            An integer in the range [0, 255] representing the red colour   
-
-               component of the pixel.
+|**Field**|    |**Details**|
+|red|  |An integer in the range [0, 255] representing the red colour   
+component of the pixel.|
 
 green          An integer in the range [0, 255] representing the green colour
 
