@@ -1,0 +1,185 @@
+using std::cerr, std::endl;
+using std::ifstream, std::ofstream;
+using std::stringstream, std::ios;
+
+template<typename T>
+UJimage<T>::UJimage(){
+    loadFromTextFile("init_large.txt");
+}
+
+template<typename T>
+UJimage<T>::UJimage(int rows, int cols){
+    constructor(rows, cols);
+}
+
+template<typename T>
+UJimage<T>::UJimage(const UJimage<T>& objImage){
+    copyConstructor(objImage);
+}
+
+template<typename T>
+int UJimage<T>::getRows() const{
+    return _rows;
+}
+
+template<typename T>
+int UJimage<T>::getCols() const{
+    return _cols;
+}
+
+template<typename T>
+T UJimage<T>::getPixel(int row, int col) const{
+    enforceRange(row, MIN_VALUE, _rows - 1);
+    enforceRange(col, MIN_VALUE, _rows - 1);
+    return _pixels[row][col];
+}
+
+template<typename T>
+void UJimage<T>::setPixel(int row, int col, T pixel){
+    enforceRange(row, MIN_VALUE, _rows - 1);
+    enforceRange(col, MIN_VALUE, _rows - 1);
+    //enforceRange(pixel.intRed, MIN_VALUE, MAX_PIXEL);
+    //enforceRange(pixel.intGreen, MIN_VALUE, MAX_PIXEL);
+    //enforceRange(pixel.intBlue, MIN_VALUE, MAX_PIXEL);
+    _pixels[row][col] = pixel;
+}
+
+template<typename T>
+UJimage<T>& UJimage<T>::operator=(const UJimage<T>& objImage){
+    if(this != &objImage) {
+        destructor();
+        constructor(objImage._rows, objImage._cols);
+        // we are of the same size
+        copyConstructor(objImage);
+    }
+    return *this;
+}
+
+template<typename T1>
+ostream& operator<<(ostream& oLHS, const UJimage<T1>& objRHS){
+    oLHS << "P3" << endl;
+    oLHS << objRHS._cols << " " << objRHS._rows << endl;
+    oLHS << "255" << endl;
+    for(int r = 0; r < objRHS._rows; r++) {
+        for(int c = 0; c < objRHS._cols; c++){
+            oLHS << objRHS._pixels[r][c].intRed << " "
+                 << objRHS._pixels[r][c].intGreen << " "
+                 << objRHS._pixels[r][c].intBlue << " ";
+        }
+        oLHS << endl;
+    }
+    return oLHS;
+}
+
+template<typename T>
+UJimage<T>& UJimage<T>::operator++(){
+    for(int r = 0; r < _rows; r++) {
+        for(int c = 0; c < _cols; c++) {
+            ++_pixels[r][c].intRed;
+            ++_pixels[r][c].intGreen;
+            ++_pixels[r][c].intBlue;
+        }
+    }
+    return *this;
+}
+
+template<typename T>
+void UJimage<T>::saveToDAT(string fileName){
+    ofstream output;
+    output.open(fileName, ios::binary);
+    for(int r = 0; r < _rows; r++) {
+        for(int c = 0; c < _cols; c++)
+            output.write(reinterpret_cast<const char*>(&_pixels[r][c]), sizeof(_pixels[r][c]));
+    }
+    output.close();
+}
+
+template<typename T>
+void UJimage<T>::draw(){
+    _render->draw(*this); // delegation
+}
+
+template<typename T>
+UJimage<T>::~UJimage(){
+    destructor();
+}
+
+template<typename T>
+void UJimage<T>::loadFromTextFile(string fileName){
+    ifstream input;
+    input.open(fileName); // open the file
+    // check if the file failed to open
+    if(input.fail()){
+        cerr << "failed to open the file" << endl;
+        exit(ERROR_IN_FILE_OPEN);
+    }
+    input >> _rows >> _cols >> stochasticity;
+    // allocate memory for the array
+    constructor(_rows, _cols);
+    // read from the file
+    string line("");
+    stringstream ss;
+    int row = 0, col = 0, counter = 0, value = 0;
+    while(getline(input, line)){
+        ss << line;
+        ss >> row >> col;
+        while(ss >> value){
+            _pixels[row][col].seeds[counter++] = value;
+        }
+    }
+    input.close();
+}
+
+template<typename T>
+void UJimage<T>::enforceRange(int value, int minValue, int maxValue) const{
+   if(value < minValue) {
+      cerr << value << " is less than expected minimum of " << minValue << endl;
+      exit(ERROR_IN_RANGE); // -2
+   }
+   if(value > maxValue) {
+      cerr << value << " is greater than expected maximum of " << maxValue << endl;
+      exit(ERROR_IN_RANGE);
+   }
+}
+
+template<typename T>
+void UJimage<T>::constructor(int rows, int cols){
+    enforceRange(rows, MIN_VALUE, MAX_VALUE - 1);
+    enforceRange(cols, MIN_VALUE, MAX_VALUE - 1);
+    _rows = rows;
+    _cols = cols;
+    _pixels = new T*[_rows];
+    for(int r = 0; r < _rows; r++) {
+        _pixels[r] = new T[_cols];
+    }
+    // life cycle management
+    if(stochasticity == 'Y')
+        _render = new StochasticRenderer<T>();
+    else if(stochasticity == 'N')
+        _render = new ContinuousRenderer<T>();
+    else{
+        cerr << "Could not instantiate a renderer" << endl;
+        exit(ERROR_IN_INSTANTIATION);
+    }
+}
+
+template<typename T>
+void UJimage<T>::destructor(){
+    assert(_pixels != nullptr);
+    for(int r = 0; r < _rows; r++)
+        delete [] _pixels[r];
+    delete [] _pixels;
+    _pixels = nullptr;
+    delete _render;
+    _render = nullptr;
+}
+
+template<typename T>
+void UJimage<T>::copyConstructor(const UJimage<T>& objImage){
+    assert(objImage._rows == _rows);
+    assert(objImage._cols == _cols);
+    for(int r = 0; r < _rows; r++){
+        for(int c = 0; c < _cols; c++)
+            _pixels[r][c] = objImage._pixels[r][c];
+    }
+}

@@ -3,13 +3,16 @@
 
 #include "UJImage.h"
 
-class StochasticRenderer : public Renderer{
+template<typename T>
+class StochasticRenderer : public Renderer<T>{
     public:
         StochasticRenderer();
-        virtual void draw(UJImage&);
+        virtual void draw(UJimage<T>&);
         virtual ~StochasticRenderer();
     private:
         int _chance; // [0 - 100]
 };
+
+#include "StochasticRenderer.imp"
 
 #endif // STOCHASTICRENDERER_H

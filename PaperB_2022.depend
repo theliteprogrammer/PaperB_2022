@@ -1,11 +1,9 @@
 # depslib dependency file v1.0
-1696537735 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\continuousrenderer.cpp
-	"ContinuousRenderer.h"
-
-1696537696 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\continuousrenderer.h
+1697288113 source:c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\main.cpp
 	"UJImage.h"
+	<fstream>
 
-1696537563 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\ujimage.h
+1697287445 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\ujimage.h
 	<iostream>
 	<string>
 	<sstream>
@@ -16,22 +14,22 @@
 	"Renderer.h"
 	"StochasticRenderer.h"
 	"ContinuousRenderer.h"
+	"UJImage.imp"
 
-1696537630 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\renderer.h
+1697288307 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\renderer.h
+	"Renderer.imp"
 
-1696537776 c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\stochasticrenderer.h
-	"UJImage.h"
+1697287919 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\renderer.imp
 
-1696537814 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\main.cpp
-	"UJImage.h"
-	<fstream>
+1697288497 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\stochasticrenderer.h
+	"StochasticRenderer.imp"
 
-1696537654 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\renderer.cpp
-	"Renderer.h"
+1697288080 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\stochasticrenderer.imp
 
-1696537802 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\stochasticrenderer.cpp
-	"StochasticRenderer.h"
+1697288458 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\continuousrenderer.h
+	"ContinuousRenderer.imp"
 
-1696537589 source:c:\users\theli\onedrive\documents\codeblocks projects\paperb_2022\ujimage.cpp
-	"UJImage.h"
+1697288088 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\continuousrenderer.imp
+
+1697287574 c:\users\theli\onedrive\documents\codeblocksprojects\paperb_2022\ujimage.imp
 

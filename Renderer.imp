@@ -1,0 +1,15 @@
+template<typename T>
+Renderer<T>::Renderer() : Renderer(DEFAULT_COORDINATE){
+}
+
+template<typename T>
+Renderer<T>::Renderer(Coordinate coordinate){
+    _coordinate = coordinate;
+}
+
+template<typename T>
+Renderer<T>::~Renderer(){
+   // ujImage manages it's life cycle
+}
+
+

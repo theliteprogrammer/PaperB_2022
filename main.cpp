@@ -17,7 +17,7 @@ int main()
      * Testing the constructor for initialising an object using
      * the information provided in the init.txt.
      */
-    UJImage objImage, objImage2;
+    UJimage<UJPixel> objImage, objImage2;
     // Converting all the pixels to the same RGB colour.
     for(int r = 0; r < objImage.getRows(); r++){
         for(int c = 0; c < objImage.getCols(); c++){

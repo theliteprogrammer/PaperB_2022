@@ -38,8 +38,9 @@
 		<Unit filename="Renderer.h" />
 		<Unit filename="StochasticRenderer.cpp" />
 		<Unit filename="StochasticRenderer.h" />
-		<Unit filename="UJImage.cpp" />
+		<Unit filename="Test.h" />
 		<Unit filename="UJImage.h" />
+		<Unit filename="UJImage.imp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

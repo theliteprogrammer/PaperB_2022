@@ -32,31 +32,31 @@ enum Status{
     SUCCESS
 };
 
-class UJImage{
+template<typename T>
+class UJimage{
     public:
         // constructors - builders
-        UJImage(); // builders that help us build the object
-        UJImage(int, int);
-        UJImage(int, int, UJPixel);
-        UJImage(const UJImage&);
+        UJimage(); // builders that help us build the object
+        UJimage(int, int);
+        UJimage(const UJimage<T>&);
 
         // class constants
-        static constexpr UJPixel DEFAULT_PIXEL = {0, 0, 0, {0, 0, 0, 0, 0}};
         static const int MIN_VALUE = 0;
         static const int MAX_VALUE = 10'000;
         static const int MAX_PIXEL = 255;
         // accessors - getters
         int getRows() const; // READONLY
         int getCols() const;
-        UJPixel getPixel(int, int) const;
+        T getPixel(int, int) const;
 
         // mutators - setters
-        void setPixel(int, int, UJPixel);
+        void setPixel(int, int, T);
 
         // operators - operator overloading
-        UJImage& operator=(const UJImage&);
-        friend ostream& operator<<(ostream&, const UJImage&);
-        UJImage& operator++();
+        UJimage<T>& operator=(const UJimage<T>&);
+        template<typename T1>
+        friend ostream& operator<<(ostream&, const UJimage<T1>&);
+        UJimage<T>& operator++();
 
         // functions for file handling
         void saveToDAT(string);
@@ -64,16 +64,19 @@ class UJImage{
         void draw();
 
         // destructor - destroyer -demolishin team
-        ~UJImage();
+        ~UJimage();
     private:
-        UJPixel** _pixels;
-        Renderer* _render;
-        int _rows, _cols;
-        char stochasticity;
+        T** _pixels;
+        Renderer<T>* _render;
+        int _rows {0}, _cols {0};
+        char stochasticity {'\0'};
         void loadFromTextFile(string);
         void enforceRange(int, int, int) const;
-        void constructor(int, int, UJPixel);
+        void constructor(int, int);
         void destructor();
-        void copyConstructor(const UJImage&);
+        void copyConstructor(const UJimage<T>&);
 };
+
+#include "UJImage.imp"
+
 #endif // UJIMAGE_H

@@ -1,0 +1,32 @@
+template<typename T>
+ContinuousRenderer<T>::ContinuousRenderer() : Renderer<T>(){
+    _maximumIntensity = 10;
+}
+
+template<typename T>
+void ContinuousRenderer<T>::draw(UJimage<T>& objImage) {
+    for(int r = 0; r < objImage.getRows(); r++) {
+        for(int c = 0; c < objImage.getCols(); c++) {
+            T pixel = objImage.getPixel(r, c);
+            int change = r - c;
+            if(pixel.intRed < _maximumIntensity &&
+               pixel.intGreen < _maximumIntensity &&
+               pixel.intBlue < _maximumIntensity) {
+                if(change < 0) {
+                    pixel.intRed = 0;
+                    pixel.intGreen = 0;
+                    pixel.intBlue = 0;
+                    objImage.setPixel(r, c, pixel);
+                } else {
+                    pixel.intRed = change;
+                    pixel.intGreen = change;
+                    pixel.intBlue = change;
+                }
+            }
+        }
+    }
+}
+
+template<typename T>
+ContinuousRenderer<T>::~ContinuousRenderer(){
+}
