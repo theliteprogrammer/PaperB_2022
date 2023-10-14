@@ -102,3 +102,7 @@
 - In all cases the functions will take the name of the file as a parameter and close the file when finished.
 
 - Additionally, you have been provided with a main.cppfile, which demonstrates the functionality of the class.
+
+# Image Output
+
+![](bin/Debug/image.ppm)
